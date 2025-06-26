@@ -68,3 +68,15 @@ python -m jetson.main
 
 Plugins can be placed in the `plugins/` directory and will automatically be
 loaded on startup.
+
+### Example: Wave when greeted
+
+The `WaveHiPlugin` monitors `conversation.log` for user messages. When it sees
+"hi" or "hello" it performs a small wave with the arm and writes ``happy`` to
+``eye_command.txt`` so the Raspberry Pi eye program can switch expressions.
+
+```text
+You: hi bloopy
+[SERVO] Channel 4 -> angle=45 dur=0.5
+...
+```
