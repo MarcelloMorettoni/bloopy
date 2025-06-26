@@ -5,6 +5,7 @@ from pathlib import Path
 from .memory import ConversationMemory
 from .plugin import PluginManager
 from .servo_api import CHANNELS, ServoCommand, move_servos
+from .llm import generate_response
 
 
 MEMORY_FILE = Path("conversation.log")
@@ -25,15 +26,15 @@ def main() -> None:
     # Run all loaded plugins (non-blocking tasks)
     manager.run_all()
 
-    # Placeholder REPL loop for conversation
+    # Simple REPL loop for conversation using the LLM
     try:
         while True:
             text = input("You: ")
             if not text:
                 continue
             memory.append(f"You: {text}")
-            # Echo back for now
-            response = f"Bloopy heard: {text}"
+            # Generate a response from the language model
+            response = generate_response(text)
             print(response)
             memory.append(response)
     except KeyboardInterrupt:
