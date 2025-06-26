@@ -56,7 +56,10 @@ Update `servo_api.py` if the wiring changes or more channels are added.
 
 ## Running
 
-Install the requirements and run the main program:
+Install the requirements and run the main program. The Jetson unit expects
+``ollama`` to be installed with the ``llama3.3`` model available. The
+environment variable ``REMOTE_API_URL`` can optionally point to an external
+LLM service which will be used if local inference fails.
 
 ```bash
 pip install -r requirements.txt
